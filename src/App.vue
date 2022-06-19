@@ -3,18 +3,30 @@
         <a v-for="(menu, idx) in menus" :key="idx">{{menu}}</a>
     </div>
 
-  <div>
-      <h4>{{products[0]}}</h4>
+    <div class="black-bg" v-if="모달창">
+        <div class="white-bg">
+            <h4>상세페이지</h4>
+            <p>상세페이지 내용</p>
+            <button @click="모달창 = false">닫기</button>
+        </div>
+    </div>
+
+
+  <div class="room-item">
+      <img src="./assets/room0.jpg" class="room-img">
+      <h4 @click="모달창 = true">{{products[0]}}</h4>
       <p>{{prices[0]}}</p>
       <button @click="increase(0)">허위매물 신고</button> <span>신고수 : {{신고수[0]}}</span>
   </div>
-  <div>
+  <div class="room-item">
+    <img src="./assets/room1.jpg" class="room-img">
       <h4>{{products[1]}}</h4>
       <p>{{prices[1]}}</p>
       <button @click="increase(1)">허위매물 신고</button> <span>신고수 : {{신고수[1]}}</span>
 
   </div>
-  <div>
+  <div class="room-item">
+    <img src="./assets/room2.jpg" class="room-img">
       <h4>{{products[2]}}</h4>
       <p>{{prices[2]}}</p>
       <button @click="increase(2)">허위매물 신고</button> <span>신고수 : {{신고수[2]}}</span>
@@ -28,6 +40,7 @@ export default {
   name: 'App',
   data(){
       return {
+          모달창 : false,
           신고수 : [0, 0, 0],
           menus : ["Home", "Shop", "About"],
           products: ["역삼동원룸", "천호동원룸", "마포구원룸"],
@@ -63,5 +76,31 @@ export default {
 .menu a {
     color: white;
     padding:  10px;
+}
+
+.room-img {
+    width: 600px;
+    margin-top: 40px;
+}
+
+body {
+    margin: 0
+}
+
+div {
+    box-sizing: border-box;
+}
+
+.black-bg {
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    position: fixed; padding: 20px;
+}
+
+.white-bg {
+    width: 100%; 
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
 }
 </style>
