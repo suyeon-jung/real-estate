@@ -11,29 +11,15 @@
         </div>
     </div>
 
-
-  <div class="room-item">
-      <img src="./assets/room0.jpg" class="room-img">
-      <h4 @click="모달창 = true">{{products[0]}}</h4>
-      <p>{{prices[0]}}</p>
-      <button @click="increase(0)">허위매물 신고</button> <span>신고수 : {{신고수[0]}}</span>
+  <div v-for="(product, idx) in products" :key="idx">
+      <img :src="product.image" class="room-img">
+      <h4 @click="모달창 = true">{{product.title}}</h4>
+      <p>{{product.price}}원</p>
   </div>
-  <div class="room-item">
-    <img src="./assets/room1.jpg" class="room-img">
-      <h4>{{products[1]}}</h4>
-      <p>{{prices[1]}}</p>
-      <button @click="increase(1)">허위매물 신고</button> <span>신고수 : {{신고수[1]}}</span>
-
-  </div>
-  <div class="room-item">
-    <img src="./assets/room2.jpg" class="room-img">
-      <h4>{{products[2]}}</h4>
-      <p>{{prices[2]}}</p>
-      <button @click="increase(2)">허위매물 신고</button> <span>신고수 : {{신고수[2]}}</span>
-  </div> 
 </template>
 
 <script>
+import products from "./assets/data";
 
 
 export default {
@@ -41,9 +27,8 @@ export default {
   data(){
       return {
           모달창 : false,
-          신고수 : [0, 0, 0],
           menus : ["Home", "Shop", "About"],
-          products: ["역삼동원룸", "천호동원룸", "마포구원룸"],
+          products: products,
           prices: ["50만원", "60만원", "70만원"]
       }
   },
